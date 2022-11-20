@@ -16,6 +16,11 @@ import java.util.UUID;
 @Schema(name="NftDTO", description = "Informações sobre NFT")
 public class NFTDTO {
 
+    @Schema(name="nftId",
+            description = "Id do NFT",
+            example = "2516154a-0a34-40a7-9c91-5f9ac2ffa516")
+    private UUID nftId;
+
     @Schema(name="name",
             description = "Nome do NFT",
             example = "NFT 1")
