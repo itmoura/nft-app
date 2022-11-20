@@ -1,0 +1,63 @@
+api:
+  name: 'API: @project.name@'
+  description: '@project.description@'
+  version: '@project.version@'
+server:
+  port: 8080
+  servlet:
+    context-path: /nft-app
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+spring:
+  profiles:
+    active: dev
+  application:
+    name: nft-app
+  jackson:
+    default-property-inclusion: NON_ABSENT
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  security:
+    jwt:
+      secret: '36f19d59-a208-411b-b331-4aa07c66d93e'
+      expiration-time: 86400000
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true
+default:
+  cors:
+    allowed:
+      origin: http://localhost:8080
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/
+    username: postgres
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+    properties:
+      hibernate:
+        temp.use_jdbc_metadata_defaults: false
+        format_sql: true
+api:
+  nft:
+    host: 'http://localhost:8081'
+    v1:
+      basePath: '/nft-engine/api/nft/v1'
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
