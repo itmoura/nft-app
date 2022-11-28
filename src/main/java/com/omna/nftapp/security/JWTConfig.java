@@ -35,6 +35,8 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/users/signup").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/nfts/collections/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/nfts").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthFilter(authenticationManager()))
