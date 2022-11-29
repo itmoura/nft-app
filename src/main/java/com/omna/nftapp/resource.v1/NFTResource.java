@@ -105,4 +105,15 @@ public class NFTResource {
         return service.pageCollections(name, pageable);
     }
 
+    // --------------------------------- //
+
+    @PostMapping("/buy/{id}")
+    @ResponseStatus(OK)
+    @Operation(summary = "Compra de NFTs",
+            description = "Endpoint responsável por comprar NFTs")
+    @ApiResponse(responseCode = "200", description = "Retorna o NFTs")
+    public NFTDTO buyNFT(@PathVariable UUID id) {
+        return service.buyNFT(id);
+    }
+
 }

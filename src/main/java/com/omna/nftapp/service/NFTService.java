@@ -50,4 +50,8 @@ public class NFTService {
     public Page<CollectionsNFTDTO> pageCollections(String name, Pageable pageable) {
         return integration.pageCollections(name, pageable);
     }
+
+    public NFTDTO buyNFT(UUID id) {
+        return null;
+    }
 }
