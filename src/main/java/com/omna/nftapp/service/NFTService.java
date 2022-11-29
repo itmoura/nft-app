@@ -7,7 +7,9 @@ import com.omna.nftapp.integration.NFTs.v1.dto.NFTDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.UUID;
 
@@ -16,6 +18,8 @@ import java.util.UUID;
 public class NFTService {
 
     private final NFTsIntegration integration;
+
+    private final UserService userService;
 
     public Page<NFTDTO> page(Pageable pageable) {
         return integration.page(pageable);
@@ -52,6 +56,14 @@ public class NFTService {
     }
 
     public NFTDTO buyNFT(UUID id) {
-        return null;
+        var nft = integration.findNftById(id);
+        if (nft == null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "NFT not found");
+        var userBuy = userService.buyNFT(nft.getPrice(), nft.getOwner_id());
+
+        if (userBuy == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not have enough balance");
+
+        return integration.buyNFT(id, userBuy);
     }
 }

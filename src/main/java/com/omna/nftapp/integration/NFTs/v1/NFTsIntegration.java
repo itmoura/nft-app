@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,11 +29,14 @@ public interface NFTsIntegration {
     @GetMapping("/nfts/collection/{id}")
     Page<NFTDTO> findNftByCollection(@PathVariable UUID id, @PageableDefault Pageable pageable);
 
-    @PutMapping("/nfts/{id}")
+    @PatchMapping("/nfts/{id}")
     NFTDTO updateNFT(@PathVariable UUID id, @RequestBody CreateNFTDTO nftdto);
 
     @PostMapping("/nfts")
     NFTDTO createNFT(@RequestBody CreateNFTDTO nftdto);
+
+    @PostMapping("/nfts/{id}/buy")
+    NFTDTO buyNFT(@PathVariable UUID id, @RequestParam UUID newOwner);
 
     // ------------------------------------ //
 

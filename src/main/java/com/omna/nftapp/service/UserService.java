@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
@@ -26,6 +27,7 @@ public class UserService {
 
     private final PasswordEncoder encoder;
 
+    @Transactional
     public UserAuthDTO save(UserDTO userDTO) {
         if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
@@ -36,6 +38,7 @@ public class UserService {
         return UserAuthDTO.convert(userRepository.save(user));
     }
 
+    @Transactional
     public UserDTO update(UUID userId, UserDTO userDTO) {
         var userIdS = getUserId();
         if (!userIdS.equals(userId)) {
@@ -82,6 +85,7 @@ public class UserService {
         return userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
+    @Transactional
     public void addCash(BigDecimal cash) {
         var email = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
         var user = userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
@@ -90,5 +94,23 @@ public class UserService {
         } else {
             user.setCash(user.getCash().add(cash));
         }
+    }
+
+    @Transactional
+    public UUID buyNFT(BigDecimal price, UUID owner_id) {
+        var email = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        var user = userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        if (user.getUserId().equals(owner_id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User cannot buy his own NFT");
+        }
+
+        if (user.getCash().compareTo(price) < 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not enough cash");
+        }
+
+        user.setCash(user.getCash().subtract(price));
+
+        return user.getUserId();
     }
 }

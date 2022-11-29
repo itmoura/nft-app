@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -35,7 +36,7 @@ public class CreateNFTDTO {
     @Schema(name="price",
             description = "Preço do NFT",
             example = "100")
-    private String price;
+    private BigDecimal price;
 
     @Schema(name="typeCoin",
             description = "Tipo de moeda",
