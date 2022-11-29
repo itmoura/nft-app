@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -79,5 +80,15 @@ public class UserService {
     public User getUser() {
         var email = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
         return userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    }
+
+    public void addCash(BigDecimal cash) {
+        var email = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        var user = userRepository.findByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        if (user.getCash() == null) {
+            user.setCash(cash);
+        } else {
+            user.setCash(user.getCash().add(cash));
+        }
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
@@ -37,6 +38,8 @@ public class UserDTO implements Serializable {
     private String avatar;
 
     private String phone;
+
+    private BigDecimal cash;
 
     public static UserDTO convert(User user) {
         UserDTO userDTO = new UserDTO();
