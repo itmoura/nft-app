@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -65,5 +66,10 @@ public class NFTService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not have enough balance");
 
         return integration.buyNFT(id, userBuy);
+    }
+
+    public List<NFTDTO> NFTsByUser() {
+        var userId = userService.getUserId();
+        return integration.NFTsByUser(userId);
     }
 }

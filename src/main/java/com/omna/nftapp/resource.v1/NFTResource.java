@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -115,6 +116,15 @@ public class NFTResource {
     @ApiResponse(responseCode = "200", description = "Retorna o NFTs")
     public NFTDTO buyNFT(@PathVariable UUID id) {
         return service.buyNFT(id);
+    }
+
+    @GetMapping("/me")
+    @ResponseStatus(OK)
+    @Operation(summary = "Listagem de NFTs do usuário",
+            description = "Endpoint responsável por listar NFTs do usuário")
+    @ApiResponse(responseCode = "200", description = "Retorna a lista de NFTs do usuário")
+    public List<NFTDTO> NFTsByUser() {
+        return service.NFTsByUser();
     }
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.UUID;
 
 @FeignClient(name = "nft-engine", url = "${api.nft.host}${api.nft.v1.basePath}")
@@ -48,4 +49,7 @@ public interface NFTsIntegration {
 
     @GetMapping("/collections")
     Page<CollectionsNFTDTO> pageCollections(@RequestParam(required = false) String name, @PageableDefault Pageable pageable);
+
+    @GetMapping("/nfts/me/{ownerId}")
+    List<NFTDTO> NFTsByUser(@PathVariable UUID ownerId);
 }
