@@ -21,8 +21,7 @@ jobs:
           cache: gradle
 
       - name: Teste com Gradle
-        run: |
-          ./gradlew test
+        run: gradle clean test
       - name: Upload artefatos de teste
         uses: actions/upload-artifact@v3
         with:
@@ -43,8 +42,7 @@ jobs:
           cache: gradle
 
       - name: Build com gradle
-        run: |
-          ./gradlew clean build
+        run: gradle clean build
       - name: Upload artefatos de build
         uses: actions/upload-artifact@v3
         with:
