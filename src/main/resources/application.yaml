@@ -31,7 +31,7 @@ feign:
 default:
   cors:
     allowed:
-      origin: http://localhost:8080
+      origin: http://localhost:8080,http://localhost:3000
 ---
 spring:
   config:
