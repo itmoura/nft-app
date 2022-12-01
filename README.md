@@ -30,7 +30,6 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 - Lembrando, esse projeto foi feito com o intuito de ser usado em conjunto com o front-end e o nft-engine, que pode ser encontrado:
 - [Nft-engine](https://github.com/itmoura/nft-engine)
 - [Front](https://github.com/ItaloRez/OmNaNFT-Front/)
-- Inicie o docker.
 
 ```bash
 # Clone este repositório
@@ -39,6 +38,7 @@ $ git clone
 # Acesse a pasta do projeto no terminal/cmd
 $ cd nft-app
 
+# Lembre-se de iniciar o docker antes de executar o comando abaixo
 # Execute o comando para subir os containers
 $ docker-compose up -d
 ```
