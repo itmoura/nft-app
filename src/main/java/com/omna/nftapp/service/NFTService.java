@@ -4,6 +4,7 @@ import com.omna.nftapp.integration.NFTs.v1.NFTsIntegration;
 import com.omna.nftapp.integration.NFTs.v1.dto.CollectionsNFTDTO;
 import com.omna.nftapp.integration.NFTs.v1.dto.CreateNFTDTO;
 import com.omna.nftapp.integration.NFTs.v1.dto.NFTDTO;
+import com.omna.nftapp.integration.NFTs.v1.enumeration.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -71,5 +73,13 @@ public class NFTService {
     public List<NFTDTO> NFTsByUser() {
         var userId = userService.getUserId();
         return integration.NFTsByUser(userId);
+    }
+
+    public NFTDTO changeStatusNFT(UUID id, Status status) {
+        return integration.changeStatusNFT(id, status);
+    }
+
+    public NFTDTO changePriceNFT(UUID id, BigDecimal price) {
+        return integration.changePriceNFT(id, price);
     }
 }

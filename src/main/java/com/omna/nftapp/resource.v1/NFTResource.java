@@ -3,6 +3,7 @@ package com.omna.nftapp.resource.v1;
 import com.omna.nftapp.integration.NFTs.v1.dto.CollectionsNFTDTO;
 import com.omna.nftapp.integration.NFTs.v1.dto.CreateNFTDTO;
 import com.omna.nftapp.integration.NFTs.v1.dto.NFTDTO;
+import com.omna.nftapp.integration.NFTs.v1.enumeration.Status;
 import com.omna.nftapp.service.NFTService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -67,6 +69,24 @@ public class NFTResource {
     @ApiResponse(responseCode = "200", description = "Retorna o NFTs")
     public NFTDTO updateNFT(@PathVariable UUID id, @RequestBody CreateNFTDTO NFTDTO) {
         return service.updateNFT(id, NFTDTO);
+    }
+
+    @PutMapping("/{id}/status")
+    @ResponseStatus(OK)
+    @Operation(summary = "Muda o status de NFTs",
+            description = "Endpoint responsável por mudar o status de NFTs")
+    @ApiResponse(responseCode = "200", description = "Retorna o NFTs")
+    public NFTDTO changeStatusNFT(@PathVariable UUID id, @RequestParam Status status) {
+        return service.changeStatusNFT(id, status);
+    }
+
+    @PutMapping("/{id}/price")
+    @ResponseStatus(OK)
+    @Operation(summary = "Muda o preço de NFTs",
+            description = "Endpoint responsável por mudar o preço de NFTs")
+    @ApiResponse(responseCode = "200", description = "Retorna o NFTs")
+    public NFTDTO changePriceNFT(@PathVariable UUID id, @RequestParam BigDecimal price) {
+        return service.changePriceNFT(id, price);
     }
 
     @PostMapping
