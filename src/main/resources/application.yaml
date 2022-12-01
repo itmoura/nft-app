@@ -24,6 +24,18 @@ spring:
     jwt:
       secret: '36f19d59-a208-411b-b331-4aa07c66d93e'
       expiration-time: 86400000
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+    properties:
+      hibernate:
+        temp.use_jdbc_metadata_defaults: false
+        format_sql: true
+  sql:
+    init:
+      platform: postgres
 feign:
   autoconfiguration:
     jackson:
@@ -41,18 +53,6 @@ spring:
     url: jdbc:postgresql://postgres:5432/
     username: postgres
     password: root
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-    hibernate:
-      ddl-auto: update
-      show-sql: true
-    properties:
-      hibernate:
-        temp.use_jdbc_metadata_defaults: false
-        format_sql: true
-  sql:
-    init:
-      platform: postgres
 api:
   nft:
     host: http://localhost:8081
