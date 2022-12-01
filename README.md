@@ -38,6 +38,7 @@ $ git clone
 # Acesse a pasta do projeto no terminal/cmd
 $ cd nft-app
 
+# Lembre-se de iniciar o docker antes de executar o comando abaixo
 # Execute o comando para subir os containers
 $ docker-compose up -d
 ```
