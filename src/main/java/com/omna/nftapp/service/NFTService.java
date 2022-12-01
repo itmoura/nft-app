@@ -62,7 +62,7 @@ public class NFTService {
         var nft = integration.findNftById(id);
         if (nft == null)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "NFT not found");
-        var newOwner = userService.buyNFT(nft.getPrice(), nft.getOwner_id());
+        var newOwner = userService.buyNFT(nft.getPrice(), nft.getOwnerId());
 
         if (newOwner == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not have enough balance");
