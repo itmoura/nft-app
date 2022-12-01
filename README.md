@@ -46,6 +46,10 @@ Irá subir um container com o banco de dados e outro com o servidor:
 - Servidor (NFT-APP) roda na porta 8080
 - Servidor (NFT-ENGINE) roda na porta 8081
 
+### Swagger
+
+- Para acessar a documentação do swagger, basta acessar a url: http://localhost:8080/nft-app/swagger-ui/index.html
+
 ## 👥 Autores
 
 <table  style="text-align:center; border: none" >
