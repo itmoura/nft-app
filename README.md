@@ -13,6 +13,7 @@ As seguintes ferramentas foram usadas na construção desse projeto:
 - [Java](https://www.java.com/pt-BR/)
 - [Spring](https://spring.io/)
 - [Gradle](https://gradle.org/)
+- [Dockers](https://www.docker.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 
 ## 🚀 Como executar o projeto
@@ -22,16 +23,7 @@ As seguintes ferramentas foram usadas na construção desse projeto:
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 
 - [Git](https://git-scm.com)
-- [Java](https://www.java.com/pt-BR/)
 - [Docker](https://www.docker.com/)
-- [Gradle](https://gradle.org/)
-
-Docker será usado afim de criar um container com o banco de dados PostgreSQL.
-```bash
-# Com docker instalado, execute o seguinte comando para criar o container
-docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=root -d postgres
-```
-E execute o mesmo.
 
 ### 🎲 Rodando o Back End (servidor)
 
@@ -46,15 +38,13 @@ $ git clone
 # Acesse a pasta do projeto no terminal/cmd
 $ cd nft-app
 
-# Instale as dependências
-$ gradle build
-
-# Execute a aplicação em modo de desenvolvimento
-$ gradle bootRun
-
-# O servidor inciará na porta:8080 - acesse http://localhost:8080
+# Execute o comando para subir os containers
+$ docker-compose up -d
 ```
-ou pelo IntelliJ IDEA, basta abrir seu projeto e executar a classe NftAppApplication.java
+Irá subir um container com o banco de dados e outro com o servidor:
+- Banco de dados roda na porta 5432
+- Servidor (NFT-APP) roda na porta 8080
+- Servidor (NFT-ENGINE) roda na porta 8081
 
 ## 👥 Autores
 
@@ -75,3 +65,7 @@ ou pelo IntelliJ IDEA, basta abrir seu projeto e executar a classe NftAppApplica
 
 </tr>
 </table>
+
+## 📝 Licença
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
