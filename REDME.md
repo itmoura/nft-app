@@ -31,6 +31,7 @@ Docker será usado afim de criar um container com o banco de dados PostgreSQL.
 # Com docker instalado, execute o seguinte comando para criar o container
 docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=root -d postgres
 ```
+E execute o mesmo.
 
 ### 🎲 Rodando o Back End (servidor)
 
