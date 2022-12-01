@@ -48,10 +48,10 @@ public class CreateNFTDTO {
             example = "2516154a-0a34-40a7-9c91-5f9ac2ffa516")
     private UUID collectionId;
 
-    @Schema(name="owner_id",
+    @Schema(name="ownerId",
             description = "Id do dono do NFT",
             example = "2516154a-0a34-40a7-9c91-5f9ac2ffa516")
-    private UUID owner_id;
+    private UUID ownerId;
 
     @Schema(name="status",
             description = "Status do NFT",
