@@ -31,7 +31,7 @@ feign:
 default:
   cors:
     allowed:
-      origin: http://localhost:8080,http://localhost:3000
+      origin: http://localhost:8080,http://localhost:3000,http://*:*
 ---
 spring:
   config:
@@ -39,7 +39,7 @@ spring:
       on-profile: dev
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/
+    url: jdbc:postgresql://postgres:5432/
     username: postgres
     password: root
   jpa:
