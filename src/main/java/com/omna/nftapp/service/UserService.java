@@ -109,7 +109,15 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not enough cash");
         }
 
+        var userOld = userRepository.findByUserId(owner_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        userOld.setCash(userOld.getCash().add(price));
+
+        userRepository.save(userOld);
+
         user.setCash(user.getCash().subtract(price));
+
+        userRepository.save(user);
 
         return user.getUserId();
     }
