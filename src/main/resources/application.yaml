@@ -31,14 +31,13 @@ feign:
 default:
   cors:
     allowed:
-      origin: http://localhost:8080,http://localhost:3000,http://*:*
+      origin: http://localhost:8080,http://localhost:3000,http://*:3000,http://*:8080
 ---
 spring:
   config:
     activate:
       on-profile: dev
   datasource:
-    platform: postgres
     url: jdbc:postgresql://postgres:5432/
     username: postgres
     password: root
@@ -51,6 +50,9 @@ spring:
       hibernate:
         temp.use_jdbc_metadata_defaults: false
         format_sql: true
+  sql:
+    init:
+      platform: postgres
 api:
   nft:
     host: 'http://localhost:8081'
