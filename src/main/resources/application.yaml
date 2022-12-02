@@ -43,7 +43,7 @@ feign:
 default:
   cors:
     allowed:
-      origin: http://*:3000,http://*:8080
+      origin: http://localhost:8080,http://localhost:3000,http://*:3000,http://*:8080
 ---
 spring:
   config:
@@ -55,7 +55,7 @@ spring:
     password: root
 api:
   nft:
-    host: http://localhost:8081
+    host: http://nft-engine:8081
     v1:
       basePath: /nft-engine/api/nft/v1
 ---
@@ -69,6 +69,6 @@ spring:
     password: root
 api:
   nft:
-    host: http://nft-engine:8081
+    host: http://localhost:8081
     v1:
       basePath: /nft-engine/api/nft/v1
